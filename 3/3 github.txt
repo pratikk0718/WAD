@@ -1,0 +1,147 @@
+===============================
+GITHUB + GIT SETUP COMPLETE GUIDE
+===============================
+
+STEP 1: CREATE GITHUB ACCOUNT
+-----------------------------
+1. Open: https://github.com
+2. Click on "Sign Up"
+3. Enter:
+   - Username
+   - Email
+   - Password
+4. Verify account and login
+
+====================================================
+
+STEP 2: DOWNLOAD AND INSTALL GIT
+--------------------------------
+Download Git from:
+https://git-scm.com/downloads
+
+After installation check Git version:
+
+git --version
+
+====================================================
+
+STEP 3: CONFIGURE GIT
+---------------------
+
+git config --global user.name "Your Name"
+
+git config --global user.email "yourmail@gmail.com"
+
+Check configuration:
+
+git config --list
+
+====================================================
+
+STEP 4: CREATE PROJECT FOLDER
+-----------------------------
+
+mkdir MyProject
+
+cd MyProject
+
+====================================================
+
+STEP 5: CREATE SAMPLE FILE
+--------------------------
+
+echo "Hello GitHub" > index.txt
+
+====================================================
+
+STEP 6: INITIALIZE GIT REPOSITORY
+---------------------------------
+
+git init
+
+====================================================
+
+STEP 7: ADD FILES
+-----------------
+
+git add .
+
+====================================================
+
+STEP 8: COMMIT FILES
+--------------------
+
+git commit -m "Initial commit"
+
+====================================================
+
+STEP 9: CREATE REPOSITORY ON GITHUB
+-----------------------------------
+1. Open https://github.com
+2. Click "New Repository"
+3. Repository Name: MyProject
+4. Click "Create Repository"
+
+====================================================
+
+STEP 10: CONNECT LOCAL PROJECT TO GITHUB
+----------------------------------------
+
+git remote add origin https://github.com/username/MyProject.git
+
+Check remote:
+
+git remote -v
+
+====================================================
+
+STEP 11: PUSH CODE TO GITHUB
+----------------------------
+
+git branch -M main
+
+git push -u origin main
+
+====================================================
+
+USEFUL GIT COMMANDS
+-------------------
+
+git status
+# Shows current status
+
+git add .
+# Adds all files
+
+git commit -m "message"
+# Saves changes
+
+git push
+# Uploads code to GitHub
+
+git pull
+# Downloads latest updates
+
+git clone URL
+# Copies repository from GitHub
+
+====================================================
+
+COMPLETE FLOW
+-------------
+
+Create Folder
+    ↓
+git init
+    ↓
+git add .
+    ↓
+git commit
+    ↓
+Create GitHub Repository
+    ↓
+git remote add origin URL
+    ↓
+git push
+
+====================================================
