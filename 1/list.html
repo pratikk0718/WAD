@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Users List</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        a { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+
+    <a href="register.html">← Back to Registration</a>
+    <h2>Registered Users</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody">
+            <!-- Data will be populated here via JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // 1. Retrieve data from Local Storage
+        const users = JSON.parse(localStorage.getItem('usersList')) || [];
+        const tableBody = document.getElementById('userTableBody');
+
+        // 2. Render data to the table
+        if (users.length === 0) {
+            tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>No users registered yet.</td></tr>";
+        } else {
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>
