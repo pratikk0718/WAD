@@ -1,0 +1,443 @@
+This requires a billing account 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+========================================================
+GOOGLE APP ENGINE INSTALLATION & SETUP USING PYTHON
+========================================================
+
+AIM:
+----
+Install Google App Engine and create Hello World
+and simple web applications using Python.
+
+========================================================
+STEP 1: INSTALL GOOGLE CLOUD SDK
+========================================================
+
+Download and install Google Cloud SDK:
+
+https://cloud.google.com/sdk/docs/install
+
+After installation verify:
+
+gcloud --version
+
+========================================================
+STEP 2: LOGIN TO GOOGLE CLOUD
+========================================================
+
+gcloud auth login
+
+========================================================
+STEP 3: CREATE GOOGLE CLOUD PROJECT
+========================================================
+
+gcloud projects create king-first-project-2026
+
+========================================================
+STEP 4: SET PROJECT
+========================================================
+
+gcloud config set project king-first-project-2026
+
+========================================================
+STEP 5: ENABLE APP ENGINE
+========================================================
+
+gcloud app create
+
+Select Region:
+Example:
+
+6
+(asia-south1)
+
+NOTE:
+-----
+App Engine deployment may require billing account.
+
+========================================================
+STEP 6: CREATE PROJECT FOLDER
+========================================================
+
+mkdir python-app
+
+cd python-app
+
+========================================================
+STEP 7: INSTALL REQUIREMENTS
+========================================================
+
+pip install flask
+
+pip install gunicorn
+
+========================================================
+STEP 8: CREATE HELLO WORLD APPLICATION
+========================================================
+
+Create file: app.py
+
+--------------------------------------------------------
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello World from Google App Engine!"
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
+
+--------------------------------------------------------
+
+========================================================
+STEP 9: CREATE requirements.txt
+========================================================
+
+Create file: requirements.txt
+
+--------------------------------------------------------
+
+Flask==3.0.0
+gunicorn==21.2.0
+
+--------------------------------------------------------
+
+========================================================
+STEP 10: CREATE app.yaml
+========================================================
+
+Create file: app.yaml
+
+--------------------------------------------------------
+
+runtime: python311
+
+entrypoint: gunicorn -b :$PORT app:app
+
+--------------------------------------------------------
+
+========================================================
+STEP 11: RUN APPLICATION LOCALLY
+========================================================
+
+python app.py
+
+========================================================
+STEP 12: OPEN IN BROWSER
+========================================================
+
+http://127.0.0.1:8080
+
+OUTPUT:
+-------
+Hello World from Google App Engine!
+
+========================================================
+STEP 13: DEPLOY APPLICATION TO APP ENGINE
+========================================================
+
+gcloud app deploy
+
+========================================================
+STEP 14: OPEN DEPLOYED APPLICATION
+========================================================
+
+gcloud app browse
+
+========================================================
+STEP 15: CREATE SIMPLE WEB APPLICATION
+========================================================
+
+Create file: student_app.py
+
+--------------------------------------------------------
+
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def form():
+
+    return '''
+
+    <h2>Student Form</h2>
+
+    <form method="POST" action="/submit">
+
+        Name:
+        <input type="text" name="name">
+
+        <input type="submit">
+
+    </form>
+
+    '''
+
+@app.route('/submit', methods=['POST'])
+def submit():
+
+    name = request.form['name']
+
+    return f"Welcome {name}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+--------------------------------------------------------
+
+========================================================
+STEP 16: RUN SIMPLE WEB APPLICATION
+========================================================
+
+python student_app.py
+
+========================================================
+STEP 17: OPEN IN BROWSER
+========================================================
+
+http://127.0.0.1:5000
+
+========================================================
+JAVA APPLICATION (BASIC)
+========================================================
+
+Create app.yaml
+
+--------------------------------------------------------
+
+runtime: java17
+
+--------------------------------------------------------
+
+Deploy Java Application:
+
+gcloud app deploy
+
+========================================================
+IMPORTANT COMMANDS
+========================================================
+
+gcloud --version
+
+gcloud auth login
+
+gcloud projects create PROJECT_NAME
+
+gcloud config set project PROJECT_NAME
+
+gcloud app create
+
+gcloud app deploy
+
+gcloud app browse
+
+python app.py
+
+========================================================
+WORKFLOW
+========================================================
+
+Install Google Cloud SDK
+          ↓
+Login to Google Cloud
+          ↓
+Create Project
+          ↓
+Enable App Engine
+          ↓
+Create Flask Application
+          ↓
+Create app.yaml
+          ↓
+Run Application Locally
+          ↓
+Deploy Application
+
+========================================================
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+This Direcly works but not fully correct 
+
+========================================================
+GOOGLE APP ENGINE PRACTICAL USING PYTHON (NO BILLING)
+========================================================
+
+AIM:
+----
+Install Google App Engine SDK and create Hello World
+and simple web applications using Python.
+
+========================================================
+STEP 1: INSTALL GOOGLE CLOUD SDK
+========================================================
+
+Download and install Google Cloud SDK:
+
+https://cloud.google.com/sdk/docs/install
+
+After installation check version:
+
+gcloud --version
+
+========================================================
+STEP 2: LOGIN TO GOOGLE CLOUD
+========================================================
+
+gcloud auth login
+
+========================================================
+STEP 3: CREATE GOOGLE CLOUD PROJECT
+========================================================
+
+gcloud projects create king-first-project-2026
+
+========================================================
+STEP 4: SET PROJECT
+========================================================
+
+gcloud config set project king-first-project-2026
+
+========================================================
+STEP 5: CREATE PROJECT FOLDER
+========================================================
+
+mkdir python-app
+
+cd python-app
+
+========================================================
+STEP 6: INSTALL FLASK
+========================================================
+
+pip install flask
+
+========================================================
+STEP 7: CREATE HELLO WORLD APPLICATION
+========================================================
+
+Create file: app.py
+
+Paste the following code:
+
+--------------------------------------------------------
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello World from Google App Engine"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+--------------------------------------------------------
+
+========================================================
+STEP 8: RUN APPLICATION
+========================================================
+
+python app.py
+
+========================================================
+STEP 9: OPEN IN BROWSER
+========================================================
+
+http://127.0.0.1:5000
+
+OUTPUT:
+-------
+Hello World from Google App Engine
+
+========================================================
+STEP 10: CREATE SIMPLE WEB APPLICATION
+========================================================
+
+Create file: student_app.py
+
+Paste the following code:
+
+--------------------------------------------------------
+
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def form():
+    return '''
+    <h2>Student Form</h2>
+
+    <form method="POST" action="/submit">
+
+        Name:
+        <input type="text" name="name">
+
+        <input type="submit">
+
+    </form>
+    '''
+
+@app.route('/submit', methods=['POST'])
+def submit():
+
+    name = request.form['name']
+
+    return f"Welcome {name}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+--------------------------------------------------------
+
+========================================================
+STEP 11: RUN SIMPLE WEB APPLICATION
+========================================================
+
+python student_app.py
+
+========================================================
+STEP 12: OPEN IN BROWSER
+========================================================
+
+http://127.0.0.1:5000
+
+========================================================
+IMPORTANT COMMANDS
+========================================================
+
+gcloud --version
+
+gcloud auth login
+
+gcloud projects create PROJECT_NAME
+
+gcloud config set project PROJECT_NAME
+
+python app.py
+
+========================================================
+WORKFLOW
+========================================================
+
+Install SDK
+      ↓
+Login to Google Cloud
+      ↓
+Create Project
+      ↓
+Install Flask
+      ↓
+Create Hello World App
+      ↓
+Run Application
+      ↓
+Create Simple Web Application
+
+========================================================
