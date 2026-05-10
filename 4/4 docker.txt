@@ -1,0 +1,89 @@
+===============================
+DOCKER SETUP FOR WINDOWS
+===============================
+
+STEP 1: ENABLE VIRTUALIZATION
+-----------------------------
+Enable VT-x or AMD-V in BIOS.
+
+====================================================
+
+STEP 2: INSTALL WSL2
+--------------------
+
+Open PowerShell as Administrator:
+
+wsl --install
+
+Restart PC.
+
+Check status:
+
+wsl --status
+
+====================================================
+
+STEP 3: INSTALL DOCKER DESKTOP
+------------------------------
+
+Download:
+https://www.docker.com/products/docker-desktop/
+
+Install normally.
+
+IMPORTANT:
+Enable "Use WSL2 instead of Hyper-V"
+
+====================================================
+
+STEP 4: CHECK DOCKER
+--------------------
+
+docker --version
+
+====================================================
+
+STEP 5: TEST DOCKER
+-------------------
+
+docker run hello-world
+
+====================================================
+
+STEP 6: DOWNLOAD UBUNTU IMAGE
+-----------------------------
+
+docker pull ubuntu
+
+====================================================
+
+STEP 7: RUN UBUNTU CONTAINER
+----------------------------
+
+docker run -it ubuntu
+
+====================================================
+
+STEP 8: USEFUL COMMANDS
+-----------------------
+
+docker ps
+
+docker ps -a
+
+docker images
+
+docker stop CONTAINER_ID
+
+docker start CONTAINER_ID
+
+docker rm CONTAINER_ID
+
+====================================================
+
+NVIDIA GPU SUPPORT
+==================
+
+docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu22.04 nvidia-smi
+
+====================================================
