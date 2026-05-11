@@ -1,0 +1,74 @@
+================================================================================
+PROJECT COMPONENT EXPLANATION & WORKFLOW
+================================================================================
+
+This document explains each component of the Assignment Management System and 
+how they interact to provide a full CRUD experience.
+
+--------------------------------------------------------------------------------
+1. BACKEND COMPONENTS (new-backend/)
+--------------------------------------------------------------------------------
+
+A. Models (models/)
+   - User.js: Defines how user data (Name, Email, Password) is stored in MongoDB.
+   - Assignment.js: Defines the Assignment schema. It links each assignment to a 
+     specific User ID (createdBy) so users only see their own data.
+
+B. Middleware (middleware/)
+   - auth.js: A security gatekeeper. It checks the "Authorization" header of 
+     incoming requests for a valid JWT token. If the token is missing or invalid, 
+     it blocks the request.
+
+C. Routes (routes/)
+   - userRoutes.js: Handles Registration, Login, and Profile fetching.
+   - assignmentRoutes.js: Implements the CRUD logic.
+     - POST: Saves a new assignment to the database.
+     - GET: Retrieves assignments from the database.
+     - PUT: Updates existing assignment data.
+     - DELETE: Removes an assignment record.
+
+D. Entry Point (server.js)
+   - The main file that starts the Express server, connects to MongoDB, and 
+     registers all the routes above.
+
+--------------------------------------------------------------------------------
+2. FRONTEND COMPONENTS (new-frontend/)
+--------------------------------------------------------------------------------
+
+A. Services (src/app/)
+   - auth.ts: Contains methods to call the Backend Auth APIs (Login/Register).
+   - assignment.ts: Contains methods to call the Backend Assignment CRUD APIs.
+
+B. Login Component (login/)
+   - Provides the login form. On success, it stores the JWT token in 
+     localStorage and redirects the user to the Assignment Manager.
+
+C. Register Component (register/)
+   - Allows new users to create an account.
+
+D. Profile Component (profile/)
+   - Displays user details and provides a navigation link to manage assignments.
+
+E. Assignment Component (assignment/)
+   - The heart of the CRUD operation.
+   - Working:
+     1. On load, it fetches all assignments from the backend.
+     2. It provides a form to add new assignments.
+     3. It allows users to "Edit" (loading data back into the form) or "Delete" 
+        assignments using the Assignment Service.
+
+--------------------------------------------------------------------------------
+3. OVERALL WORKFLOW
+--------------------------------------------------------------------------------
+
+1. User Registers/Logins -> Receives a JWT Token from the Server.
+2. Frontend stores the Token in the browser (localStorage).
+3. User goes to "Manage Assignments".
+4. Frontend calls the Assignment API, sending the Token in the Header.
+5. Backend Middleware verifies the Token -> Identifies the User.
+6. Backend Database performs the requested CRUD operation.
+7. Frontend updates the UI dynamically to show the results.
+
+================================================================================
+END OF DOCUMENT
+================================================================================
